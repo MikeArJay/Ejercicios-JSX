@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Saludo from './components/Saludo';
+import Despedida from './components/Despedida';
+import { coches } from './components/ListaCoches';
 
 function App() {
+  const [mostrarSaludo, setMostrarSaludo] = useState(true);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       {mostrarSaludo ? (
+        <Saludo nombre="Michael" />
+      ) : (
+        <Despedida nombre="Michael" />
+      )}
+
+      {coches.map((coche) => (
+        <div  className="StileCoche">
+          {coche.Matricula} - {coche.Modelo} {coche.Marca} ({coche.Tipo})
+        </div>
+      ))}
     </div>
   );
 }
